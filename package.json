@@ -1,0 +1,20 @@
+{
+  "name": "gamester",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "engines": {
+    "node": "14.15.3",
+    "npm": "6.14.9"
+  }
+}
