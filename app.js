@@ -3,6 +3,12 @@ const   jwt     =   require('jsonwebtoken')
 const   Port    =   process.env.Port || 3000
 const   app     =   express()
 
+app.get('/api/test',(req,res)=>{
+    res.json({
+        message: 'hello'
+    })
+})
+
 app.post('/api/verify', verifyToken, (req, res)=>  {
     jwt.verify(req.token,'chuchibukim',(err,data)=> {
         if(err)
