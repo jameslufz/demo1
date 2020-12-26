@@ -1,6 +1,6 @@
 const   express =   require('express')
 const   jwt     =   require('jsonwebtoken')
-const   Port    =   process.env.Port || 5000
+const   PORT    =   process.env.PORT || 5000
 const   app     =   express()
 
 app.get('/',(req,res)=>{
@@ -57,4 +57,4 @@ function verifyToken (req,res,next) {
     }
 
 }
-app.listen(Port, ()   =>  console.log('Server ON : port ' + Port))
+app.listen(PORT, ()   =>  console.log('Server ON : port ' + PORT))
