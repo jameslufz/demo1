@@ -25,7 +25,7 @@ app.post('/api/verify', verifyToken, (req, res)=>  {
 })
 
 
-app.post('/api/login',(req, res)   =>  {
+app.get('/api/login',(req, res)   =>  {
 
     const   schema  =   {
         id          :   1,
