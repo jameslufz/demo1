@@ -9,7 +9,7 @@ app.get('/',(req,res)=>{
     })
 })
 
-app.post('/api/verify', verifyToken, (req, res)=>  {
+app.get('/api/verify', verifyToken, (req, res)=>  {
     jwt.verify(req.token,'chuchibukim',(err,data)=> {
         if(err)
         {
@@ -25,7 +25,7 @@ app.post('/api/verify', verifyToken, (req, res)=>  {
 })
 
 
-app.post('/api/login',(req, res)   =>  {
+app.get('/api/login',(req, res)   =>  {
 
     const   schema  =   {
         id          :   1,
