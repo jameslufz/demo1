@@ -9,7 +9,7 @@ app.get('/',(req,res)=>{
     })
 })
 
-app.get('/api/verify', verifyToken, (req, res)=>  {
+app.post('/api/verify', verifyToken, (req, res)=>  {
     jwt.verify(req.token,'chuchibukim',(err,data)=> {
         if(err)
         {
