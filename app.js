@@ -17,35 +17,35 @@ app.get('/',(req,res)=>{
     })
 })
 
-app.get('/api/data/:id',(req,res)=>{
-    const mock  =   {
-        "users":    [
-            {
-                "id"    :   0,
-                "name"  :   "James",
-                "age"   :   22,
-                "gender":   "male"
-            },
-            {
-                "id"    :   1,
-                "name"  :   "Beam",
-                "age"   :   22,
-                "gender":   "female"
-            },
-            {
-                "id"    :   2,
-                "name"  :   "Chi",
-                "age"   :   2,
-                "gender":   "female"
-            }
-        ]
-    }
-    const id =    req.params.id;
-    if(id){
-        res.json(mock.users[id])
-    }else{
-        res.json(mock)
-    }
+
+const mock   =   {
+    "users":    [
+        {
+            "id"    :   0,
+            "name"  :   "James",
+            "age"   :   22,
+            "gender":   "male"
+        },
+        {
+            "id"    :   1,
+            "name"  :   "Beam",
+            "age"   :   22,
+            "gender":   "female"
+        },
+        {
+            "id"    :   2,
+            "name"  :   "Chi",
+            "age"   :   2,
+            "gender":   "female"
+        }
+    ]
+}
+app.get("/api",(req,res) => {
+    res.json(mock)
+})
+app.get("/api/:id",(req,res) => {
+    const id = req.params.id
+    res.json(mock.users[id])
 })
 
 app.post('/api/verify', verifyToken, (req, res)=>  {
