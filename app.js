@@ -18,7 +18,9 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/api/db:id',(req,res)=>{
-    const mock  =   JSON.parse({
+    //const mock  =   JSON.parse()
+    const data =    req.params.id;
+    res.json({
         "users":    [
             {
                 "id"    :   0,
@@ -40,8 +42,6 @@ app.get('/api/db:id',(req,res)=>{
             }
         ]
     })
-    const data =    req.params.id;
-    res.json(mock)
 })
 
 app.post('/api/verify', verifyToken, (req, res)=>  {
