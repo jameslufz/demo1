@@ -18,7 +18,7 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/api/db:id',(req,res)=>{
-    const mock  =   {
+    const mock  =   JSON.parse({
         "users":    [
             {
                 "id"    :   0,
@@ -39,7 +39,7 @@ app.get('/api/db:id',(req,res)=>{
                 "gender":   "female"
             }
         ]
-    }
+    })
     const data =    req.params.id;
     res.json(mock)
 })
