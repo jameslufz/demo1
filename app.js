@@ -42,7 +42,7 @@ app.get('/api/data',(req,res)=>{
     }
     const data =    req.params.id;
     if(data){
-        res.json(mock.user[data])
+        res.json(mock.users[data])
     }else{
         res.json(mock)
     }
