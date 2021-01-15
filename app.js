@@ -18,9 +18,8 @@ app.get('/',(req,res)=>{
 })
 
 
-const mock   =   {
-    "users":    [
-        {
+const mock   =   [
+      {
             "id"    :   0,
             "name"  :   "James",
             "age"   :   22,
@@ -38,8 +37,7 @@ const mock   =   {
             "age"   :   2,
             "gender":   "female"
         }
-    ]
-}
+]
 app.get("/api",(req,res) => {
     res.json(mock)
 })
