@@ -17,9 +17,9 @@ app.get('/',(req,res)=>{
     })
 })
 
-app.get('/api/db:id',(req,res)=>{
+app.get('/api/data',(req,res)=>{
     //const mock  =   JSON.parse()
-    const data =    req.params.id;
+    //const data =    req.params.id;
     res.json({
         "users":    [
             {
