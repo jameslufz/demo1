@@ -21,7 +21,26 @@ app.get('/api/data',(req,res)=>{
     //const mock  =   JSON.parse()
     //const data =    req.params.id;
     res.json({
-        "message" : "hello"
+        "users":    [
+            {
+                "id"    :   0,
+                "name"  :   "James",
+                "age"   :   22,
+                "gender":   "male"
+            },
+            {
+                "id"    :   1,
+                "name"  :   "Beam",
+                "age"   :   22,
+                "gender":   "female"
+            },
+            {
+                "id"    :   2,
+                "name"  :   "Chi",
+                "age"   :   2,
+                "gender":   "female"
+            }
+        ]
     })
 })
 
