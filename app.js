@@ -17,6 +17,31 @@ app.get('/',(req,res)=>{
     })
 })
 
+app.get('/api/db',(req,res)=>{
+    res.json({
+        "users":    [
+            {
+                "id"    :   0,
+                "name"  :   "James",
+                "age"   :   22,
+                "gender":   "male"
+            },
+            {
+                "id"    :   1,
+                "name"  :   "Beam",
+                "age"   :   22,
+                "gender":   "female"
+            },
+            {
+                "id"    :   2,
+                "name"  :   "Chi",
+                "age"   :   2,
+                "gender":   "female"
+            }
+        ]
+    })
+})
+
 app.post('/api/verify', verifyToken, (req, res)=>  {
     jwt.verify(req.token,'chuchibukim',(err,data)=> {
         if(err)
