@@ -41,7 +41,7 @@ app.get('/api/db:id',(req,res)=>{
         ]
     }
     const data =    req.params.id;
-    res.json(mock.data)
+    res.json(mock)
 })
 
 app.post('/api/verify', verifyToken, (req, res)=>  {
