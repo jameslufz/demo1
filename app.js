@@ -18,33 +18,57 @@ app.get('/',(req,res)=>{
 })
 
 
-const mock   =   [
-      {
-            "id"    :   0,
-            "name"  :   "James",
-            "age"   :   22,
-            "gender":   "male"
-        },
-        {
-            "id"    :   1,
-            "name"  :   "Beam",
-            "age"   :   22,
-            "gender":   "female"
-        },
-        {
-            "id"    :   2,
-            "name"  :   "Chi",
-            "age"   :   2,
-            "gender":   "female"
-        }
-]
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+
+    const mocks   =   [
+            {
+                "vehicle"   :   "Car",
+                "name"      :   "James",
+                "brand"     :   "Tesla"
+            },
+            {
+                "vehicle"   :   "Motorcycle",
+                "name"      :   "James",
+                "brand"     :   "GPX"
+            },
+            {
+                "vehicle"   :   "Car",
+                "name"      :   "Beam",
+                "brand"     :   "Honda"
+            },
+            {
+                "vehicle"   :   "Airplane",
+                "name"      :   "Chi",
+                "brand"     :   "Yamaha"
+            },
+            {
+                "vehicle"   :   "Boat",
+                "name"      :   "Beam",
+                "brand"     :   "Tesla"
+            }
+        ]
 app.get("/api",(req,res) => {
-    res.json(mock)
+    res.json(mocks)
 })
-app.get("/api/:id",(req,res) => {
-    const id = req.params.id
-    res.json(mock.users[id])
+app.get("/api/:name",(req,res) => {
+    const   name    =   req.params.name
+    const   result  =   mocks.filter(mock => mock.name.toLocaleLowerCase() == name.toLocaleLowerCase())
+    res.json(result)
 })
+app.get("/api/:name/:brand",(req,res) => {
+    const   name    =   req.params.name
+    const   brand   =   req.params.brand
+    const   result  =   mocks.filter(mock => 
+        (mock.name.toLocaleLowerCase() == name.toLocaleLowerCase()) 
+        && mock.brand.toLocaleLowerCase() == brand.toLocaleLowerCase()
+    )
+    res.json(result)
+})
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
 
 app.post('/api/verify', verifyToken, (req, res)=>  {
     jwt.verify(req.token,'chuchibukim',(err,data)=> {
