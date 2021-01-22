@@ -1,8 +1,11 @@
 const   express =   require('express')
 const   jwt     =   require('jsonwebtoken')
+const   bodyParser = require("body-parser")
 const   PORT    =   process.env.PORT || 5000
 
 const   app     =   express()
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
@@ -67,9 +70,10 @@ app.get("/api/:name/:brand",(req,res) => {
     res.json(result)
 })
 
-app.post("/api/:txt",(req,res) => {
-    const   txt     =   req.params.txt
-    res.json({message:"your text post is "+txt})
+app.post("/next/api",(req,res) => {
+    const   txt     =   req.body
+    console.log(txt)
+    res.json(txt)
 })
 //////////////////////////////////
 //////////////////////////////////
