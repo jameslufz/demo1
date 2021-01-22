@@ -75,36 +75,33 @@ app.get("/api/:name/:brand",(req,res) => {
 
 app.post("/next/api",(req,res) => {
 
-    const   schema  =   {
-        name    :   req.body.name,
-        age     :   req.body.age
-    }
-    if(!schema.name || !schema.age){
-        res.status(403).send("Sorry! You can't see that.")
-    }else{
+    // const   schema  =   {
+    //     name    :   req.body.name,
+    //     age     :   req.body.age
+    // }
+    // if(!schema.name || !schema.age){
+    //     res.status(403).send("Sorry! You can't see that.")
+    // }else{
         
-        jwt.sign({schema},'chuchibukim',{ expiresIn:'1h' }, (err,token)    =>{
+    //     jwt.sign({schema},'chuchibukim',{ expiresIn:'1h' }, (err,token)    =>{
             
-            app.use(session({
-                secret: token,
-                cookie: {
-                    path: '/',
-                    domain: 'http://localhost:3000',
-                    maxAge: 1000 * 60 * 24 // 24 hours
-                }
-            }))
+    //         app.use(session({
+    //             secret: token,
+    //             cookie: {
+    //                 path: '/',
+    //                 domain: 'http://localhost:3000',
+    //                 maxAge: 1000 * 60 * 24 // 24 hours
+    //             }
+    //         }))
 
-            if(token){
-                res.json({message:"success",status:200})
-            }
+    //         if(token){
+    //             res.json({message:"success",status:200})
+    //         }
 
-        })
-    }
-    // jwt.sign({schema},'chuchibukim',{ expiresIn:'1h' }, (err,token)    =>{
-    //     res.json({token})
-    // })
-    // const   txt     =   req.body
-    // res.json(txt)
+    //     })
+    // }
+    const   txt     =   req.body
+    res.json(txt)
 })
 //////////////////////////////////
 //////////////////////////////////
