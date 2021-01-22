@@ -80,7 +80,7 @@ app.get("/next/api",(req,res) => {
         age     :   req.body.age
     }
     if(!schema.name || !schema.age){
-        res.satus(401)
+        res.satus(403)
     }else{
         
         jwt.sign({schema},'chuchibukim',{ expiresIn:'1h' }, (err,token)    =>{
