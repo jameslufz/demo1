@@ -73,7 +73,7 @@ app.get("/api/:name/:brand",(req,res) => {
     res.json(result)
 })
 
-app.get("/next/api",(req,res) => {
+app.post("/next/api",(req,res) => {
 
     const   schema  =   {
         name    :   req.body.name,
