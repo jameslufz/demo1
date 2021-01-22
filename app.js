@@ -1,11 +1,14 @@
-const   express =   require('express')
-const   jwt     =   require('jsonwebtoken')
-const   bodyParser = require("body-parser")
+const   express         =   require('express')
+const   jwt             =   require('jsonwebtoken')
+const   bodyParser      =   require("body-parser")
+const   session         =   require('express-session')
+const   cookieParser    =   require('cookie-parser')
 const   PORT    =   process.env.PORT || 5000
 
 const   app     =   express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieParser())
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
@@ -70,9 +73,38 @@ app.get("/api/:name/:brand",(req,res) => {
     res.json(result)
 })
 
-app.post("/next/api",(req,res) => {
-    const   txt     =   req.body
-    res.json(txt)
+app.get("/next/api",(req,res) => {
+
+    const   schema  =   {
+        name    :   req.body.name,
+        age     :   req.body.age
+    }
+    if(!schema.name || !schema.age){
+        res.json({message:"error"})
+    }else{
+        
+        jwt.sign({schema},'chuchibukim',{ expiresIn:'1h' }, (err,token)    =>{
+            
+            app.use(session({
+                secret: token,
+                cookie: {
+                    path: '/',
+                    domain: 'http://localhost:3000',
+                    maxAge: 1000 * 60 * 24 // 24 hours
+                }
+            }))
+
+            if(token){
+                res.json({message:"success",status:200})
+            }
+
+        })
+    }
+    // jwt.sign({schema},'chuchibukim',{ expiresIn:'1h' }, (err,token)    =>{
+    //     res.json({token})
+    // })
+    // const   txt     =   req.body
+    // res.json(txt)
 })
 //////////////////////////////////
 //////////////////////////////////
