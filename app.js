@@ -11,9 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+    res.header('Access-Control-Allow-Credentials', true)
+    res.header('Access-Control-Allow-Origin', req.headers.origin)
     res.header('Access-Control-Allow-Methods','POST, GET, PUT, PATCH, DELETE, OPTIONS')
-    res.header('Access-Control-Allow-Headers','Content-Type, Option, Authorization')
+    res.header('Access-Control-Allow-Headers','X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Option, Authorization')
     next()
 })
 
@@ -75,33 +76,27 @@ app.get("/api/:name/:brand",(req,res) => {
 
 app.post("/next/api",(req,res) => {
 
-    // const   schema  =   {
-    //     name    :   req.body.name,
-    //     age     :   req.body.age
-    // }
-    // if(!schema.name || !schema.age){
-    //     res.status(403).send("Sorry! You can't see that.")
-    // }else{
+    const   schema  =   {
+        name    :   req.body.name,
+        age     :   req.body.age
+    }
+    if(!schema.name || !schema.age){
+        res.status(403).send("Sorry! You can't see that.")
+    }else{
         
-    //     jwt.sign({schema},'chuchibukim',{ expiresIn:'1h' }, (err,token)    =>{
+        jwt.sign({schema},'chuchibukim',{ expiresIn:'1h' }, (err,token)    =>{
             
-    //         app.use(session({
-    //             secret: token,
-    //             cookie: {
-    //                 path: '/',
-    //                 domain: 'http://localhost:3000',
-    //                 maxAge: 1000 * 60 * 24 // 24 hours
-    //             }
-    //         }))
+            res.cookie('authcookie',token,{maxAge:100000,httpOnly:true}) 
 
-    //         if(token){
-    //             res.json({message:"success",status:200})
-    //         }
+            if(token){
+                res.json({message:"success",status:200})
+            }
 
-    //     })
-    // }
-    const   txt     =   req.body
-    res.json(txt)
+        })
+    }
+    // const   txt     =   req.body
+    // console.log(txt)
+    // res.json(txt)
 })
 //////////////////////////////////
 //////////////////////////////////
