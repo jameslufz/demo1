@@ -72,7 +72,6 @@ app.get("/api/:name/:brand",(req,res) => {
 
 app.post("/next/api",(req,res) => {
     const   txt     =   req.body
-    console.log(txt)
     res.json(txt)
 })
 //////////////////////////////////
