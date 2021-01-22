@@ -12,7 +12,7 @@ app.use(cookieParser())
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', true)
-    res.header('Access-Control-Allow-Origin', req.headers.origin)
+    res.header('Access-Control-Allow-Origin', "*")
     res.header('Access-Control-Allow-Methods','POST, GET, PUT, PATCH, DELETE, OPTIONS')
     res.header('Access-Control-Allow-Headers','X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Option, Authorization')
     next()
@@ -86,10 +86,11 @@ app.post("/next/api",(req,res) => {
         
         jwt.sign({schema},'chuchibukim',{ expiresIn:'1h' }, (err,token)    =>{
             
-            res.cookie('authcookie',token,{maxAge:100000,httpOnly:true}) 
+            res.cookie('authcookie',token,{path:'/',maxAge:3600,httpOnly:true})
+            // res.clearCookie('authcookie')
 
             if(token){
-                res.json({message:"success",status:200})
+                res.json(req.body)
             }
 
         })
