@@ -66,6 +66,11 @@ app.get("/api/:name/:brand",(req,res) => {
     )
     res.json(result)
 })
+
+app.post("/api/:txt",(req,res) => {
+    const   txt     =   req.params.txt
+    res.json({message:"your text post is "+txt})
+})
 //////////////////////////////////
 //////////////////////////////////
 //////////////////////////////////
